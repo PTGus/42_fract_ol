@@ -6,7 +6,7 @@
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:23:37 by gumendes          #+#    #+#              #
-#    Updated: 2024/12/03 16:16:33 by gumendes         ###   ########.fr        #
+#    Updated: 2024/12/04 11:13:22 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ INCLUDES = -I$(LIBFT_PATH) -I$(PRINTF_PATH) -I$(MLX_PATH)
 
 NAME		=	fract_ol
 
-SRC			=	main.c ft_sets.c ft_events.c ft_color.c ft_init.c ft_addit.c ft_calcs.c ft_zoom.c
+SRC			=	main.c ft_sets.c ft_events.c ft_color.c ft_init.c ft_addit.c ft_calcs.c ft_zoom.c ft_error.c
 OBJ			=	$(SRC:.c=.o)
 
 # Targets

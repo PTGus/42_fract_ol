@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_color.c                                         :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 10:18:08 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/04 13:39:16 by gumendes         ###   ########.fr       */
+/*   Created: 2024/12/04 11:08:34 by gumendes          #+#    #+#             */
+/*   Updated: 2024/12/04 11:12:50 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// void	ft_colorselect(t_mlx_data *data)
-// {
-
-// }
-
-int	color(int t, int r, int g, int b, t_mlx_data *data)
+void	lilerror(void)
 {
-	(void)data;
-	return (*(int *)(unsigned char [4]){b, g, r, t});
+	ft_printf("Too little arguments please select an available fractal\n");
+	ft_printf("mandelbrot\njulia");
+}
+
+void	bigerror(void)
+{
+	ft_printf("Too many arguments please select an available fractal\n");
+	ft_printf("mandelbrot\njulia");
 }

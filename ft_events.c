@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:23:19 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/03 15:57:21 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:51:46 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_winmove(int keysym, t_mlx_data *data)
     double im_step = (data->MaxIm - data->MinIm) * 0.1;
 	if (keysym == 65361)
 	{
-		data->MinRe -= re_step;
-		data->MaxRe -= re_step;
+		data->MinRe -= 0.1 * re_step;
+		data->MaxRe -= 0.1 * re_step;
 	}
 	else if (keysym == 65362)
 	{
@@ -36,7 +36,7 @@ void	ft_winmove(int keysym, t_mlx_data *data)
 		data->MinIm -= 0.1 * im_step;
 		data->MaxIm -= 0.1 * im_step;
 	}
-	mandelbrot(data, data->win_ptr);
+	mandelbrot(data);
 }
 
 int	handle_input(int keysym, t_mlx_data *data)
