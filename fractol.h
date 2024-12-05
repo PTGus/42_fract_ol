@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:27:22 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/04 14:51:15 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:43:44 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_mlx_data
 	double	Red_factor;
 	double	Green_factor;
 	double	Blue_factor;
+	int     fractal_type;
 }	t_mlx_data;
 
 enum
@@ -68,11 +69,11 @@ enum
 void			putpixel(t_mlx_data *data, int x, unsigned int y, unsigned int color);
 int				close_window(t_mlx_data *data);
 int				handle_input(int keysym, t_mlx_data *data);
-void			mandelbrot(t_mlx_data *data);
+int				mandelbrot(t_mlx_data *data);
 void			ft_init(t_mlx_data *data, char **argv);
 void 			initialize_plane_mandelbrot(t_mlx_data *data);
 unsigned int	mandelbrot_iteration(t_mlx_data *data);
-int				color(int t, int r, int g, int b, t_mlx_data *data);
+int				color(int r, int g, int b, t_mlx_data *data);
 int 			ft_zoom(int keysym, int x, int y, t_mlx_data *data);
 void			lilerror(void);
 void			bigerror(void);
@@ -80,9 +81,15 @@ int				ft_initimg(t_mlx_data *data);
 int				ft_initwin(t_mlx_data *data);
 int				ft_initmlx(t_mlx_data *data);
 void 			initialize_plane_julia(t_mlx_data *data, char **argv);
-void			julia(t_mlx_data *data);
+int				julia(t_mlx_data *data);
 unsigned int	julia_iteration(double Z_re, double Z_im, double c_re, double c_im);
-
+int				ft_selec_fractal(t_mlx_data *data, char **argv);
+void			cleanup(t_mlx_data *data);
+void			ft_shrink(t_mlx_data *data, double re_center, double im_center);
+void			ft_enlarge(t_mlx_data *data, double re_center, double im_center);
+void			ft_resume(t_mlx_data *data);
+void			ft_error(void);
+void			ft_init_fract(t_mlx_data *data);
 // Printf //
 int	ft_printf(const char *str, ...);
 

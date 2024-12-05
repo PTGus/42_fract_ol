@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:38:28 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/04 15:03:48 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:52:57 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_mlx_data	data;
+
 	(void)argc;
 	// if (argc != 2)
 	// {
@@ -26,9 +27,6 @@ int	main(int argc, char **argv)
 	// }
 	ft_init(&data, argv);
 	if (data.mlx_ptr == NULL || data.win_ptr == NULL)
-	{
-		ft_printf("Init failed\n");
 		return (1);
-	}
 	return (0);
 }

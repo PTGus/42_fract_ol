@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_color.c                                         :+:      :+:    :+:   */
+/*   ft_addit2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 10:18:08 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/05 15:09:12 by gumendes         ###   ########.fr       */
+/*   Created: 2024/12/05 15:37:51 by gumendes          #+#    #+#             */
+/*   Updated: 2024/12/05 15:44:24 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// void	ft_colorselect(t_mlx_data *data)
-// {
-
-// }
-
-int	color(int r, int g, int b, t_mlx_data *data)
+void	ft_init_fract(t_mlx_data *data)
 {
-	(void)data;
-	return (*(int *)(unsigned char [4]){b, g, r});
+	if (data->fractal_type == 0)
+		mandelbrot(data);
+	else if (data->fractal_type == 1)
+		julia(data);
 }

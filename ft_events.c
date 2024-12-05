@@ -6,11 +6,19 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:23:19 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/04 13:51:46 by gumendes         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:52:58 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	ft_resume(t_mlx_data *data)
+{
+	if (data->fractal_type == 0)
+		mlx_loop_hook(data->mlx_ptr, mandelbrot, data);
+	else if (data->fractal_type == 1)
+		mlx_loop_hook(data->mlx_ptr, julia, data);
+}
 
 void	ft_winmove(int keysym, t_mlx_data *data)
 {
@@ -36,35 +44,27 @@ void	ft_winmove(int keysym, t_mlx_data *data)
 		data->MinIm -= 0.1 * im_step;
 		data->MaxIm -= 0.1 * im_step;
 	}
-	mandelbrot(data);
+	ft_resume(data);
 }
 
 int	handle_input(int keysym, t_mlx_data *data)
 {
 	if (keysym == XK_Escape)
 	{
-		printf("The %d key (ESC) was pressed\n", keysym);
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		mlx_destroy_display(data->mlx_ptr);
-        free(data->mlx_ptr);
-		exit (1);
+		ft_printf("Exiting.");
+		cleanup(data);
+		exit (0);
 	}
 	else if (keysym == 65361 || keysym == 65362 || keysym == 65363 || keysym == 65364)
 	{
 		ft_winmove(keysym, data);
 	}
 	else
-	printf("The %d key was pressed\n", keysym);
 	return (0);
 }
 
-
 int	close_window(t_mlx_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-    free(data->mlx_ptr);
-	exit (1);
+	cleanup(data);
+    exit (0);
 }
-
-

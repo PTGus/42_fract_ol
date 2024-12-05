@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_color.c                                         :+:      :+:    :+:   */
+/*   ft_kill.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 10:18:08 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/05 15:09:12 by gumendes         ###   ########.fr       */
+/*   Created: 2024/12/05 12:11:53 by gumendes          #+#    #+#             */
+/*   Updated: 2024/12/05 12:18:03 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// void	ft_colorselect(t_mlx_data *data)
-// {
-
-// }
-
-int	color(int r, int g, int b, t_mlx_data *data)
+void	cleanup(t_mlx_data *data)
 {
-	(void)data;
-	return (*(int *)(unsigned char [4]){b, g, r});
+	if (data->img_ptr)
+		mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
 }
