@@ -6,23 +6,24 @@
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:23:37 by gumendes          #+#    #+#              #
-#    Updated: 2024/12/05 15:43:14 by gumendes         ###   ########.fr        #
+#    Updated: 2025/01/02 17:15:36 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
+MLXFLAGS	=	-lX11 -lXext -lm
 
 # Library Paths
 LIBFT_PATH		=	libft
 PRINTF_PATH		=	printf
-MLX_PATH		=	minilibx-linux
+MLX_PATH		=	mlx
 
 # Libraries
 LIBFT		=	$(LIBFT_PATH)/libft.a
 PRINTF		=	$(PRINTF_PATH)/libftprintf.a
-MLX_LIB		=	-L$(MLX_PATH) -lmlx_Linux -lX11 -lXext -lm
+MLX_LIB		=	$(MLX_PATH)/libmlx_Linux.a
 
 # Includes
 INCLUDES = -I$(LIBFT_PATH) -I$(PRINTF_PATH) -I$(MLX_PATH)
@@ -35,7 +36,7 @@ SRC			=	main.c ft_sets.c ft_events.c ft_color.c \
 OBJ			=	$(SRC:.c=.o)
 
 # Targets
-all: $(LIBFT) $(PRINTF) $(NAME)
+all: checker $(MLX_LIB) $(LIBFT) $(PRINTF) $(NAME)
 
 # Build the libft library
 $(LIBFT):
@@ -45,9 +46,18 @@ $(LIBFT):
 $(PRINTF):
 	$(MAKE) -C $(PRINTF_PATH)
 
+$(MLX_LIB):
+	make -C mlx
+
+checker:
+	@if [ -d "mlx" ]; then echo "$(GREEN)[MLX FOLDER FOUND]$(END)"; else make download; fi
+
+download:
+	git clone git@github.com:42Paris/minilibx-linux.git mlx
+
 # Build the fractol program
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(PRINTF) $(MLX_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(PRINTF) $(MLX_LIB)
 
 # Clean object files
 clean:
@@ -60,6 +70,7 @@ fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_PATH) fclean
 	$(MAKE) -C $(PRINTF_PATH) clean
+	rm -rf mlx
 
 re: fclean all
 

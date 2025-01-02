@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 10:59:25 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/05 15:41:47 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:44:48 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	mandelbrot(t_mlx_data *data)
 	y = -1;
 	while (++y < HEIGHT)
 	{
-		data->c_im = data->MaxIm - y * data->Im_factor;
+		data->c_im = data->max_im - y * data->im_factor;
 		x = -1;
 		while (++x < WIDTH)
 		{
-			data->c_re = data->MinRe + x * data->Re_factor;
-			data->Z_re = data->c_re;
-			data->Z_im = data->c_im;
+			data->c_re = data->min_re + x * data->re_factor;
+			data->z_re = data->c_re;
+			data->z_im = data->c_im;
 			n = 0;
 			n = mandelbrot_iteration(data);
 			if (n < MaxIter)
@@ -62,11 +62,11 @@ int	julia(t_mlx_data *data)
 	y = 0;
 	while (y < HEIGHT)
 	{
-		z_im = data->MaxIm - y * data->Im_factor;
+		z_im = data->max_im - y * data->im_factor;
 		x = 0;
 		while (x < WIDTH)
 		{
-			z_re = data->MinRe + x * data->Re_factor;
+			z_re = data->min_re + x * data->re_factor;
 			n = julia_iteration(z_re, z_im, data->c_re, data->c_im);
 			if (n < MaxIter)
 				putpixel(data, x, y, color(n * n / 2, n * 3, n * 7, data));

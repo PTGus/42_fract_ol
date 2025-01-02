@@ -6,7 +6,7 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:21:11 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/05 15:52:58 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:39:54 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_init(t_mlx_data *data, char **argv)
 			return ;
 		mlx_key_hook(data->win_ptr, handle_input, data);
 		mlx_mouse_hook(data->win_ptr, ft_zoom, data);
-		mlx_hook(data->win_ptr, ON_DESTROY, 0, close_window, data);
+		mlx_hook(data->win_ptr, 17, 0, close_window, data);
 		ft_init_fract(data);
 		mlx_loop(data->mlx_ptr);
 	}
