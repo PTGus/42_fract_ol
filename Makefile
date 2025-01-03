@@ -6,7 +6,7 @@
 #    By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:23:37 by gumendes          #+#    #+#              #
-#    Updated: 2025/01/02 17:15:36 by gumendes         ###   ########.fr        #
+#    Updated: 2025/01/03 16:45:04 by gumendes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ NAME		=	fract_ol
 
 SRC			=	main.c ft_sets.c ft_events.c ft_color.c \
 				ft_init.c ft_addit.c ft_calcs.c ft_zoom.c \
-				ft_error.c ft_kill.c ft_addit2.c
+				ft_messages.c ft_kill.c ft_addit2.c ft_addit3.c \
+				ft_newt_helper.c
 OBJ			=	$(SRC:.c=.o)
 
 # Targets

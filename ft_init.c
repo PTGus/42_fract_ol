@@ -6,12 +6,15 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:21:11 by gumendes          #+#    #+#             */
-/*   Updated: 2025/01/02 17:39:54 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/03 15:18:35 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/**
+ * @brief Initiates the mlx pointer.
+ */
 int	ft_initmlx(t_mlx_data *data)
 {
 	data->mlx_ptr = mlx_init();
@@ -22,6 +25,9 @@ int	ft_initmlx(t_mlx_data *data)
 	return (0);
 }
 
+/**
+ * @brief Initiates the window pointer.
+ */
 int	ft_initwin(t_mlx_data *data)
 {
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "My window");
@@ -35,6 +41,9 @@ int	ft_initwin(t_mlx_data *data)
 	return (0);
 }
 
+/**
+ * @brief Initiates the image pointer.
+ */
 int	ft_initimg(t_mlx_data *data)
 {
 	data->img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
@@ -45,33 +54,47 @@ int	ft_initimg(t_mlx_data *data)
 		free(data->mlx_ptr);
 		return (1);
 	}
-	data->img_data = mlx_get_data_addr(data->img_ptr, &data->bpp, &data->line_len, &data->endian);
+	data->img_data = mlx_get_data_addr(data->img_ptr,
+			&data->bpp, &data->line_len, &data->endian);
 	return (0);
 }
 
+/**
+ * @brief Selects which set's data should be initialized.
+ */
 int	ft_selec_fractal(t_mlx_data *data, char **argv)
 {
-	if (ft_strncmp(argv[1], "mandelbrot",
-			ft_strlen((const char *)argv[1])) == 0)
+	if (data->fractal_type == 0)
 	{
-		data->fractal_type = 0;
 		initialize_plane_mandelbrot(data);
 		return (0);
 	}
-	else if (ft_strncmp(argv[1], "julia",
-			ft_strlen((const char *)argv[1])) == 0)
+	else if (data->fractal_type == 1)
 	{
-		data->fractal_type = 1;
 		initialize_plane_julia(data, argv);
+		return (0);
+	}
+	else if (data->fractal_type == 2)
+	{
+		initialize_plane_newton(data);
+		return (0);
+	}
+	else if (data->fractal_type == 3)
+	{
+		initialize_plane_burn(data);
 		return (0);
 	}
 	else
 	{
-		ft_error();
+		ft_error(data);
 		return (1);
 	}
 }
 
+/**
+ * @brief Initiates all the needed components for
+ *  calculation and set ups the event handlers.
+ */
 void	ft_init(t_mlx_data *data, char **argv)
 {
 	int	i;
@@ -85,6 +108,7 @@ void	ft_init(t_mlx_data *data, char **argv)
 			return ;
 		if (ft_initimg(data) == 1)
 			return ;
+		clear_image(data);
 		mlx_key_hook(data->win_ptr, handle_input, data);
 		mlx_mouse_hook(data->win_ptr, ft_zoom, data);
 		mlx_hook(data->win_ptr, 17, 0, close_window, data);

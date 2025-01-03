@@ -6,12 +6,15 @@
 /*   By: gumendes <gumendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:11:53 by gumendes          #+#    #+#             */
-/*   Updated: 2024/12/05 12:18:03 by gumendes         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:55:57 by gumendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/**
+ * @brief Frees all the allocated memory.
+ */
 void	cleanup(t_mlx_data *data)
 {
 	if (data->img_ptr)
@@ -23,4 +26,5 @@ void	cleanup(t_mlx_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
+	ft_free(data);
 }
