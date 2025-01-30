@@ -5,16 +5,16 @@ This project was developed as part of my 42 School curriculum to deepen my under
 
 ## Setup
 To run this program, clone the repository:
-'''
+```
 git clone git@github.com:PTGus/42_fract_ol.git
-'''
+```
 Navigate to the created directory and compile the program using the Makefile:
-'''
+```
 cd 42_fract_ol  
 make
-'''
+```
 Once compiled, run the program:
-'''
+```
 ./fractol
-'''
+```
 A prompt will appear with instructions on how to use the program.
